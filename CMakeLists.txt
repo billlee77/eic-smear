@@ -106,7 +106,8 @@ target_include_directories(eicsmear
 
 
 # Require at least c++11. Could require individual features instead too
-target_compile_features(eicsmear PUBLIC cxx_std_11)
+#target_compile_features(eicsmear PUBLIC cxx_std_11)
+target_compile_features(eicsmear PUBLIC cxx_std_17)
 
 # Can add addtional options here
 target_compile_options(eicsmear PRIVATE -Wall -Wextra -pedantic -g)
@@ -214,7 +215,7 @@ ROOT_GENERATE_DICTIONARY( G__eicsmear
   )
 
 # Require at least c++11
-target_compile_features(G__eicsmear PUBLIC cxx_std_11)
+target_compile_features(G__eicsmear PUBLIC cxx_std_17)
 
 # Smearing code dictionary.
 ROOT_GENERATE_DICTIONARY( smearDict
@@ -244,7 +245,7 @@ ROOT_GENERATE_DICTIONARY( smearDict
   )
 
 # Require at least c++11
-target_compile_features(smearDict PUBLIC cxx_std_11)
+target_compile_features(smearDict PUBLIC cxx_std_17)
 
 ## Build PYTHIA6-dependent functionality if a library directory was specified.
 ## This comprises PYTHIA-related stuff in the main eRHIC directory,
@@ -262,7 +263,7 @@ if(PYTHIA6_LIBDIR)
     LINKDEF cint/LinkDefPythia.h
     )
   # Require at least c++11
-  target_compile_features(pythiaDict PUBLIC cxx_std_11)
+  target_compile_features(pythiaDict PUBLIC cxx_std_17)
   
   # Create the hadronic dictionary.
   ROOT_GENERATE_DICTIONARY( hadronicDict
@@ -276,7 +277,7 @@ if(PYTHIA6_LIBDIR)
     LINKDEF cint/hadronicLinkDef.h
     )
   # Require at least c++11
-  target_compile_features(hadronicDict PUBLIC cxx_std_11)
+  target_compile_features(hadronicDict PUBLIC cxx_std_17)
   
   # Additional PYTHIA-related and hadronic source files
   target_sources( eicsmear
@@ -314,7 +315,7 @@ endif()
 
 # eic-smear interface
 add_executable(eic-smear scripts/eic-smear.cxx)
-target_compile_features(eic-smear PUBLIC cxx_std_11)
+target_compile_features(eic-smear PUBLIC cxx_std_17)
 target_compile_options(eic-smear PRIVATE -Wall -Wextra -pedantic -g)
 target_link_libraries(eic-smear eicsmear )
 target_include_directories(eic-smear
@@ -339,7 +340,7 @@ if ( PYTHIA6_LIBDIR )
     PRIVATE
     ${ROOT_INCLUDE_DIRS}
     )
-  target_compile_features(compiled_runpythia PUBLIC cxx_std_11)
+  target_compile_features(compiled_runpythia PUBLIC cxx_std_17)
   target_compile_options(compiled_runpythia PRIVATE -Wall -Wextra -pedantic -g)
 
   
